@@ -56,8 +56,9 @@
 50. [Gérer les appareils IoT et leurs accès](#gérer-les-appareils-iot-et-leurs-accès)
 51. [Mettre en perspective les risques du jailbreak](#mettre-en-perspective-les-risques-du-jailbreak)
 52. [Mises à jour et révisions régulières](#mises-à-jour-et-révisions-régulières)
-53. [Ressources externes pour aller plus loin](#ressources-externes-pour-aller-plus-loin)
-54. [Retours et contributions](#retours-et-contributions)
+53. [Astuces souvent oubliées (iOS 16–27)](#astuces-souvent-oubliées-ios-1627)
+54. [Ressources externes pour aller plus loin](#ressources-externes-pour-aller-plus-loin)
+55. [Retours et contributions](#retours-et-contributions)
 
 ## Introduction
 Bienvenue dans le guide ultime du durcissement d'iOS ! Ce guide vise à renforcer la sécurité et la confidentialité des iPhone et iPad pour tous les utilisateurs, des débutants aux plus avancés. Nous explorons et expliquons les fonctionnalités de sécurité d'Apple, leurs limites, et proposons des solutions alternatives pour une confidentialité et une sécurité robustes au sein de l'écosystème Apple.
@@ -532,6 +533,185 @@ Le jailbreak permet aux utilisateurs de contourner de nombreuses restrictions de
 ### Suivre les mises à jour iOS
 - **Vérifier les mises à jour iOS** : vérifiez et installez régulièrement les dernières mises à jour iOS sur votre appareil. Ces mises à jour contiennent souvent des correctifs de sécurité essentiels et des améliorations de fonctionnalités.
 - **Consulter les mises à jour du guide** : après avoir mis à jour iOS, consultez à nouveau ce guide pour vous assurer que vos paramètres et pratiques de sécurité correspondent aux nouveaux changements introduits par la mise à jour.
+
+## Astuces souvent oubliées (iOS 16–27)
+
+Les réglages ci-dessous sont faciles à manquer parce qu'ils sont enfouis, activés par défaut ou n'apparaissent qu'après une mise à jour. Aucun ne remplace les fondamentaux (code d'accès robuste, authentification à deux facteurs, mises à jour et sauvegardes) ; ils comblent des lacunes que le reste de ce guide ne couvre pas. Appliquez-les indépendamment selon votre modèle de menace.
+
+**Si vous ne faites que huit choses :** activez Advanced Data Protection avec une clé de récupération ou un contact, ajoutez des clés de sécurité si vous êtes à haut risque, réglez les aperçus de notifications sur « When Unlocked », verrouillez ou masquez les apps sensibles, activez App Privacy Report, activez Background Security Improvements, filtrez les appels et expéditeurs inconnus, et vérifiez les appareils de confiance et les mots de passe spécifiques aux apps.
+
+### Compte, récupération et identité
+
+- **Advanced Data Protection (ADP).** Active le chiffrement de bout en bout pour la majorité des données iCloud, y compris les sauvegardes d'appareil, Photos et Notes. Apple ne peut pas lire ces données, mais ne peut pas non plus les récupérer pour vous.
+  - **Chemin :** `Settings → [your name] → iCloud → Advanced Data Protection`.
+  - **Avant d'activer :** définissez un contact de récupération ou une clé de récupération de 28 caractères et conservez-la hors ligne. ADP désactive l'accès web à iCloud.com ; un accès web temporaire doit être approuvé depuis un appareil de confiance.
+  - **Limites :** indisponible pour les comptes enfant ou gérés ; les albums partagés, la collaboration iWork et le partage « toute personne disposant du lien » restent hors d'ADP.
+
+- **Clés de sécurité pour votre compte Apple.** Une clé matérielle certifiée FIDO bloque l'hameçonnage et l'interception à distance de votre second facteur. Vous devez enregistrer au moins deux clés (six au maximum) et les conserver à des endroits distincts.
+  - **Chemin :** `Settings → [your name] → Sign-in & Security → Two-Factor Authentication → Security Keys`.
+  - **Mise en garde :** si vous perdez tous vos appareils de confiance et toutes vos clés, le compte peut être verrouillé définitivement. Les comptes enfant et gérés ne sont pas pris en charge. Nécessite iOS 16.3 ou ultérieur sur tous les appareils.
+
+- **Contacts de récupération, clé de récupération et Legacy Contact.** Ce sont trois mécanismes différents ; configurez-en au moins deux. Un contact de récupération peut vous fournir un code, une clé de récupération est un secret de 28 caractères que vous conservez hors ligne, et un Legacy Contact peut demander l'accès après votre décès.
+  - **Chemins :** `Settings → [your name] → Sign-in & Security → Recovery Contacts` / `Recovery Key` / `Legacy Contact`.
+  - **Mise en garde :** une clé de récupération désactive le processus de récupération standard d'Apple ; la perdre peut vous verrouiller. Ne la stockez pas uniquement dans iCloud.
+
+- **Auditer les appareils de confiance et les mots de passe spécifiques aux apps.** Les anciens iPad, Mac et mots de passe spécifiques aux apps sont des portes dérobées persistantes.
+  - **Chemin :** `Settings → [your name]` pour la liste des appareils, et `appleid.apple.com → Sign-In & Security → App-Specific Passwords`.
+  - Supprimez les appareils que vous n'utilisez plus et révoquez les mots de passe des anciennes apps. Changer le mot de passe de votre compte Apple ne révoque pas toujours les mots de passe spécifiques aux apps.
+
+- **Safety Check.** Passe en revue qui peut voir votre localisation, vos photos, vos notes, votre calendrier et les autorisations des apps ; Emergency Reset coupe tout partage et vous guide pour sécuriser le compte.
+  - **Chemin :** `Settings → Privacy & Security → Safety Check`.
+  - **Mise en garde :** il ne peut pas modifier les comptes tiers, les mots de passe ou les données partagées depuis un autre appareil ; certaines options sont indisponibles avec des restrictions Screen Time ou un MDM. Utilisez Quick Exit si vous devez quitter l'écran immédiatement.
+
+- **iMessage Contact Key Verification.** Vous alerte si un attaquant sophistiqué se fait passer pour un contact ou compromet les serveurs iMessage ; la vérification manuelle compare un code en personne ou lors d'un appel sécurisé.
+  - **Chemin :** `Settings → [your name] → Contact Key Verification`.
+  - **Prérequis :** iOS 17.2 ou ultérieur, authentification à deux facteurs, trousseau iCloud et code d'accès sur tous les appareils. Les deux parties doivent l'activer ; cela n'arrête pas l'hameçonnage ni les arnaques par SMS.
+
+- **Passkeys et alertes de mots de passe compromis.** Les clés d'accès (passkeys) résistent à l'hameçonnage et sont synchronisées avec un chiffrement de bout en bout via le trousseau iCloud. Activez la détection de fuites et examinez les recommandations de sécurité.
+  - **Chemin :** `Passwords app → Security` ; `Settings → Apps → Passwords → Detect Compromised Passwords`.
+  - **Mise en garde :** les passkeys ne sont sûres qu'autant que votre code d'accès et votre compte Apple ; conservez une clé matérielle ou une autre méthode de récupération.
+
+### iCloud, e-mail et réseau
+
+- **iCloud Private Relay.** Masque votre adresse IP et vos requêtes DNS aux sites et aux opérateurs réseau en acheminant le trafic via deux relais. Ce n'est pas un VPN : il ne change pas votre pays apparent et ne cache pas votre trafic à Apple.
+  - **Chemin :** `Settings → [your name] → iCloud → Private Relay`.
+  - **Mise en garde :** nécessite iCloud+ ; certains réseaux, opérateurs ou pays ne le prennent pas en charge. Désactivez-le par réseau si un portail captif ou un VPN entre en conflit.
+
+- **Hide My Email.** Crée des alias uniques `@privaterelay.appleid.com` qui renvoient vers votre adresse réelle ; désactivez un alias lorsqu'il commence à recevoir du spam.
+  - **Chemin :** `Settings → [your name] → iCloud → Hide My Email` ; également proposé par Sign in with Apple.
+  - **Mise en garde :** iCloud+ requis ; certains services bloquent les adresses relais ; les alias ne sont pas anonymes si vous les associez à des données identifiantes.
+
+- **Mail Privacy Protection.** Précharge le contenu distant via deux relais et masque votre IP, de sorte que les expéditeurs ne peuvent pas savoir de manière fiable quand ou où vous avez ouvert un message.
+  - **Chemin :** `Settings → Apps → Mail → Privacy Protection → Protect Mail Activity`.
+  - **Option plus stricte :** `Block All Remote Content` (les images peuvent ne pas se charger). Nécessite `Limit IP Address Tracking` ; ne protège pas les liens ni les pièces jointes que vous ouvrez.
+
+- **Private Wi-Fi Address et Limit IP Address Tracking.** Utilisez une adresse MAC différente par réseau (Fixed ou Rotating) et masquez votre IP aux traqueurs connus.
+  - **Chemin :** `Settings → Wi-Fi → (i) à côté du réseau → Private Wi-Fi Address` et `Limit IP Address Tracking` ; équivalent cellulaire sous `Settings → Cellular → Cellular Data Options`.
+  - **Mise en garde :** les portails captifs, les Wi-Fi d'entreprise et certains routeurs peuvent exiger l'adresse matérielle ; utilisez Fixed plutôt que Off lorsque c'est possible.
+
+- **DNS chiffré via un profil de confiance.** DNS-over-HTTPS ou DNS-over-TLS empêche votre FAI ou votre point d'accès de lire chaque domaine que vous visitez, mais ne masque pas l'IP de destination.
+  - **Chemin :** installez un profil de configuration auprès d'un résolveur réputé (Quad9, Cloudflare, NextDNS) via `Settings → General → VPN & Device Management`.
+  - **Mise en garde :** un profil DNS peut intercepter tout le trafic ; n'installez que ce à quoi vous faites confiance, et supprimez les profils inutilisés. Le filtrage DNS ne remplace pas un VPN.
+
+- **Arrêter la connexion automatique aux anciens réseaux Wi-Fi et aux réseaux ouverts.** Un téléphone qui rejoint silencieusement un SSID familier est vulnérable aux points d'accès jumeaux malveillants (evil twin).
+  - **Chemin :** `Settings → Wi-Fi → Ask to Join Networks → Notify` (ou Off) ; oubliez les réseaux que vous n'utilisez plus ; désactivez `Auto-Join Hotspot`.
+  - **Mise en garde :** `Ask to Join` demande toujours confirmation ; vérifiez le nom du réseau et utilisez un VPN sur les réseaux non fiables.
+
+### Écran verrouillé, notifications et apps
+
+- **Aperçus de notifications.** Réglez les aperçus sur `When Unlocked` ou `Never` afin que les codes, messages et alertes médicales n'apparaissent pas sur un écran verrouillé.
+  - **Chemin :** `Settings → Notifications → Show Previews`.
+  - **Aussi :** `Settings → Notifications → Screen Sharing` pour masquer les notifications pendant un partage d'écran ; des réglages par app peuvent réactiver les aperçus.
+
+- **Verrouiller et masquer des apps.** Exige Face ID, Touch ID ou votre code d'accès pour ouvrir les apps sensibles et les retire de la recherche, des notifications et de certaines surfaces système.
+  - **Chemin :** touchez et maintenez l'icône de l'app → `Require Face ID` → `Require Face ID` ou `Hide and Require Face ID`.
+  - **Mise en garde :** iOS 18 ou ultérieur ; les apps Apple intégrées ne peuvent pas être masquées ; les apps masquées restent dans le dossier Hidden de l'App Library et peuvent être révélées avec authentification.
+
+- **App Privacy Report.** Montre quelles apps ont utilisé la caméra, le micro, la localisation, les contacts, les photos et d'autres capteurs, ainsi que les domaines contactés.
+  - **Chemin :** `Settings → Privacy & Security → App Privacy Report → Turn On App Privacy Report`.
+  - Consultez-le chaque mois : révoquez les capteurs qui ne correspondent pas à l'usage de l'app et examinez les domaines inattendus.
+
+- **Supprimer la localisation des photos avant de les partager.** Les photos peuvent contenir des coordonnées GPS, des horodatages et des détails sur l'appareil.
+  - **Chemin :** `Photos → ouvrir la photo → Info (i) → Adjust → No Location` ; lors du partage, touchez `Options` et désactivez `Location` et `All Photos Data`.
+  - **Mise en garde :** les captures d'écran et certaines images modifiées ou exportées peuvent conserver des métadonnées ; utilisez un outil de suppression de métadonnées pour les partages à haut risque.
+
+- **Presse-papiers et claviers tiers.** iOS demande confirmation avant qu'une app colle depuis une autre app ; n'accordez pas `Allow Paste` aux apps qui n'en ont pas besoin. Les claviers tiers avec `Full Access` peuvent lire ce que vous tapez.
+  - **Chemin :** `Settings → General → Keyboard → Keyboards → [keyboard] → Full Access` (à désactiver) ; examinez les demandes de collage au fur et à mesure.
+  - **Mise en garde :** certains claviers ont besoin de Full Access pour le glissement ou le remplacement de texte ; préférez le clavier intégré pour les mots de passe et les messages sensibles.
+
+- **Require Attention et Erase Data.** `Require Attention` empêche Face ID de déverrouiller lorsque vos yeux sont fermés ; `Erase Data` efface l'appareil après 10 tentatives de code d'accès échouées.
+  - **Chemin :** `Settings → Face ID & Passcode → Require Attention` et `Erase Data`.
+  - **Mise en garde :** Erase Data peut être déclenché par des enfants ou des farceurs ; gardez des sauvegardes. C'est une protection de dernier recours, pas un substitut à un code d'accès robuste.
+
+- **Auditer les autorisations que l'on oublie.** `Local Network`, `Bluetooth`, `Contacts` (accès limité) et `Photos` (photos sélectionnées) sont des fuites courantes.
+  - **Chemin :** `Settings → Privacy & Security → Local Network / Bluetooth / Contacts / Photos`.
+  - Préférez `Limited Access` pour les photos et les contacts ; révoquez Local Network aux apps qui n'ont pas besoin de découvrir des appareils.
+
+### Appels, messages et partage
+
+- **Call Screening (iOS 26 ou ultérieur).** Les appelants inconnus doivent décliner leur nom et le motif avant que votre téléphone sonne ; vous voyez une transcription en direct et décidez de répondre.
+  - **Chemin :** `Settings → Apps → Phone → Screen Unknown Callers → Ask Reason for Calling` (ou `Silence`).
+  - **Mise en garde :** les appels d'urgence désactivent le filtrage pendant 24 heures ; les appels en itinérance ne sont pas filtrés ; certains appelants raccrochent.
+
+- **Filtrer les expéditeurs inconnus dans Messages.** Déplace les SMS de numéros inconnus hors de la liste principale et supprime les notifications ; le spam va dans un dossier séparé.
+  - **Chemin :** `Messages → Filters → Manage Filtering → Screen Unknown Senders` (et `Filter Spam`) ; ou `Settings → Apps → Messages → Unknown Senders`.
+  - **Mise en garde :** les codes de vérification et les messages de livraison peuvent être filtrés ; autorisez les notifications urgentes ou consultez le dossier Unknown Senders.
+
+- **AirDrop et NameDrop.** Réglez AirDrop sur `Contacts Only` ou `Receiving Off` ; désactivez `Bringing Devices Together` pour qu'approcher deux iPhone ne partage pas votre carte de visite.
+  - **Chemin :** `Settings → General → AirDrop`.
+  - **Mise en garde :** `Contacts Only` autorise encore toute personne de vos contacts ; `Receiving Off` est préférable dans les lieux bondés.
+
+- **RCS, repli SMS et partage FaceTime.** RCS n'est pas automatiquement chiffré de bout en bout avec tous les opérateurs ; SMS ne l'est jamais. Désactivez `Retry as Text Message` si vous ne voulez pas qu'un iMessage échoué bascule silencieusement. Traitez toute demande inattendue de partage d'écran ou de contrôle à distance comme hostile.
+  - **Chemin :** `Settings → Apps → Messages → RCS Messaging` et `Retry as Text Message` ; les commandes FaceTime apparaissent pendant un appel.
+  - **Mise en garde :** depuis iOS 26.5, RCS peut être chiffré de bout en bout avec les opérateurs compatibles, mais la couverture varie ; utilisez iMessage ou Signal pour les contenus sensibles.
+
+- **SIM PIN, eSIM et verrou de portabilité.** Un code PIN SIM empêche quelqu'un d'utiliser votre SIM physique dans un autre téléphone ; un PIN de compte opérateur et un verrou de portabilité bloquent le détournement de numéro. Le transfert d'eSIM devrait exiger l'approbation de l'opérateur.
+  - **Chemin :** `Settings → Cellular → SIM PIN` (SIM physique) ; réglages du compte opérateur pour la protection de portabilité.
+  - **Mise en garde :** trop de tentatives de PIN SIM erronées nécessitent le PUK ; conservez-le en sécurité. Une configuration eSIM seule n'est pas immunisée contre la prise de contrôle du compte.
+
+### Système, mises à jour et services Apple
+
+- **Background Security Improvements.** Correctifs légers pour Safari, WebKit et les bibliothèques système entre les mises à jour iOS complètes ; anciennement Rapid Security Responses.
+  - **Chemin :** `Settings → Privacy & Security → Background Security Improvements → Automatically Install`.
+  - **Mise en garde :** iOS 26.1 ou ultérieur ; si désactivé, vous attendez la prochaine mise à jour complète. Une amélioration problématique peut être retirée, revenant à la version de base.
+
+- **Analyses et historique Siri.** Désactivez le partage des analyses iPhone et iCloud et `Improve Siri & Dictation` ; supprimez les transcriptions Siri et dictée stockées.
+  - **Chemin :** `Settings → Privacy & Security → Analytics & Improvements` ; `Settings → Siri → Siri & Dictation History → Delete Siri & Dictation History`.
+  - **Mise en garde :** certaines analyses aident Apple à corriger des plantages ; le compromis de confidentialité vous appartient. Supprimer l'historique ne désactive pas Siri.
+
+- **Apple Intelligence et ChatGPT.** Apple Intelligence peut utiliser des modèles sur l'appareil et sur serveur ; l'extension ChatGPT envoie des requêtes à OpenAI lorsqu'elle est utilisée. Désactivez les fonctionnalités dont vous n'avez pas besoin et vérifiez l'accès par app.
+  - **Chemin :** `Settings → Apple Intelligence & Siri → ChatGPT` (désactiver l'extension) ; `Settings → Apple Intelligence & Siri` pour Siri, Visual Intelligence et l'accès des apps.
+  - **Mise en garde :** les fonctionnalités et leur disponibilité varient selon l'appareil, la région et la langue. Le Siri AI d'iOS 27 ajoute de nouveaux consentements et accès aux données ; vérifiez à nouveau après les mises à jour majeures.
+
+- **Journaling Suggestions et « Discoverable by Others ».** Les suggestions de Journal peuvent utiliser les contacts, les photos, les entraînements et les appareils à proximité ; `Discoverable by Others` permet aux téléphones d'autres utilisateurs de Journal de détecter le vôtre pour prioriser leurs suggestions.
+  - **Chemin :** `Settings → Privacy & Security → Journaling Suggestions` → désactivez des catégories, `Discoverable by Others`, ou `Turn Off All`.
+  - **Mise en garde :** cela ne partage ni vos entrées de journal ni votre nom ; c'est un signal de proximité entre appareils. Désactivez-le si vous n'utilisez pas Journal.
+
+- **Confidentialité de StandBy.** Un iPhone en charge en mode paysage peut afficher des notifications, des photos et des widgets à toute la pièce.
+  - **Chemin :** `Settings → StandBy` → désactivez `Show Notifications` ou activez `Show Preview on Tap Only` ; activez `Night Mode` pour un usage au chevet.
+  - **Mise en garde :** StandBy est pratique comme horloge de chevet, mais c'est un affichage public ; n'utilisez pas de widgets ou d'albums photo sensibles.
+
+- **Limit Precise Location (iOS 26.3 ou ultérieur).** Réduit la précision des données de localisation exposées aux réseaux cellulaires, sans affecter les apps ni les appels d'urgence.
+  - **Chemin :** `Settings → Cellular → Cellular Data Options → Limit Precise Location`.
+  - **Mise en garde :** uniquement les modèles d'iPhone et d'iPad compatibles (modems Apple C1/C1X, comme iPhone Air, iPhone 16e et iPhone 17e) et les opérateurs pris en charge ; les SIM de l'UE et du Royaume-Uni peuvent l'activer. Ce n'est pas un substitut au contrôle `Precise Location` au niveau des apps.
+
+### Enfants, appareils partagés et configurations à haut risque
+
+- **Sensitive Content Warning et Communication Safety.** Floute les images de nudité ou de violence dans Messages, AirDrop, les Contact Posters et les messages vidéo FaceTime ; Communication Safety ajoute des contrôles parentaux et des ressources pour les enfants.
+  - **Chemin :** `Settings → Privacy & Security → Sensitive Content Warning` ; pour un enfant : `Settings → Screen Time → Communication Safety`.
+  - **Mise en garde :** la détection est effectuée sur l'appareil ; aucune image n'est envoyée à Apple sauf si vous la signalez. Communication Safety est activé par défaut pour les enfants de moins de 18 ans dans de nombreuses régions.
+
+- **Code Screen Time, restrictions et Guided Access.** Un code Screen Time distinct empêche quelqu'un qui connaît le code de votre appareil de modifier les restrictions ; Guided Access verrouille le téléphone sur une seule app lorsque vous le prêtez.
+  - **Chemin :** `Settings → Screen Time → Lock Screen Time Settings` ; `Settings → Screen Time → Content & Privacy Restrictions` ; `Settings → Accessibility → Guided Access`.
+  - **Mise en garde :** un code Screen Time oublié ne peut être réinitialisé qu'en effaçant l'appareil, ou avec la récupération du compte Apple sur les versions récentes d'iOS ; documentez-le en lieu sûr.
+
+- **Supervision ou MDM pour les utilisateurs à haut risque.** Un appareil supervisé peut imposer des reports de mise à jour, interdire l'appairage, restreindre les comptes, forcer un VPN ou un proxy DNS et activer des protections permanentes que les utilisateurs ne peuvent pas désactiver.
+  - **Chemin :** Apple Business Manager ou Apple School Manager plus Apple Configurator ou un MDM ; gestion déclarative des appareils sur iOS 27.
+  - **Mise en garde :** vous échangez de la flexibilité contre du contrôle, et vous avez besoin d'un Mac et d'un plan de gestion. N'installez pas de profils MDM aléatoires ; vérifiez l'organisation.
+
+- **Profils bêta et profils de configuration.** Les versions bêta d'iOS sont moins testées et peuvent casser des fonctionnalités de sécurité ; des profils inconnus peuvent intercepter le trafic ou installer des certificats.
+  - **Chemin :** `Settings → General → VPN & Device Management` (supprimer les profils inconnus) ; `Settings → General → About → Certificate Trust Settings` (désactiver les certificats racine non fiables).
+  - **Mise en garde :** supprimer un profil peut supprimer des réglages Wi-Fi, VPN ou e-mail ; gardez une sauvegarde et sachez comment réinscrire l'appareil.
+
+### Physique et fin de vie
+
+- **Juice jacking et poches Faraday.** Les ports USB publics peuvent transporter des données, pas seulement de l'énergie ; un câble bloquant les données ou une batterie externe évite le risque. Une poche Faraday bloque le cellulaire, le Wi-Fi, le Bluetooth et le GPS lorsque vous devez isoler un appareil.
+  - **Chemin :** emportez un câble d'alimentation seule ou un bloqueur de données ; vérifiez qu'il charge sans monter l'appareil comme périphérique.
+  - **Mise en garde :** les poches Faraday bloquent aussi les appels d'urgence et Find My ; utilisez-les délibérément, pas comme rangement quotidien.
+
+- **Satellite SOS, Messages et Find My.** L'iPhone 14 et les modèles ultérieurs peuvent contacter les services d'urgence, envoyer des messages et partager leur localisation par satellite en l'absence de couverture cellulaire ou Wi-Fi.
+  - **Chemin :** `Settings → Emergency SOS` ou `Settings → Satellite` (selon disponibilité) ; essayez la démo avant d'en avoir besoin.
+  - **Mise en garde :** nécessite une vue dégagée du ciel, est disponible dans un nombre limité de pays, et l'accès gratuit peut être limité dans le temps ; ce n'est pas un substitut à une PLB ou à un messager satellite pour les voyages isolés.
+
+- **Medical ID et contacts d'urgence.** La Medical ID peut être affichée sur l'écran verrouillé sans déverrouiller ; incluez les allergies, les médicaments, le groupe sanguin et les contacts d'urgence, mais omettez les détails que vous ne voulez pas que des inconnus voient.
+  - **Chemin :** `Health app → photo de profil → Medical ID → Edit` ; activez `Show When Locked`.
+  - **Mise en garde :** n'importe qui peut la lire depuis l'écran verrouillé ; gardez-la à jour et vérifiez après tout changement de médicament.
+
+- **Avant de vendre ou de recycler.** Déconnectez-vous de votre compte Apple, désactivez Activation Lock et Find My, effacez l'appareil, transférez ou supprimez l'eSIM et retirez-le de vos appareils de confiance.
+  - **Chemin :** `Settings → [your name] → Sign Out` ; `Settings → General → Transfer or Reset iPhone → Erase All Content and Settings` ; app ou réglages de l'opérateur pour l'eSIM.
+  - **Mise en garde :** effacer sans se déconnecter peut laisser Activation Lock ; un appareil effacé avec Activation Lock est inutilisable pour un acheteur et peut rester lié à vous.
+
+**Références Apple principales :** [Advanced Data Protection](https://support.apple.com/en-us/108756) · [Security Keys](https://support.apple.com/en-us/102637) · [Contact Key Verification](https://support.apple.com/en-us/118246) · [Safety Check](https://support.apple.com/guide/personal-safety/use-safety-check-to-stop-sharing-and-secure-your-account-ips2aad835e1/web) · [App Privacy Report](https://support.apple.com/en-us/102188) · [Background Security Improvements](https://support.apple.com/en-us/102657) · [Limit Precise Location](https://support.apple.com/en-us/126101) · [Call Screening](https://support.apple.com/en-us/111106) · [Sensitive Content Warning](https://support.apple.com/en-us/105071)
 
 ## Ressources externes pour aller plus loin
 - [Into the Cyberverse](https://alternativeto.net/list/34604/cyberverse) - La liste ultime d'applications et de services pour améliorer la sécurité, la confidentialité et l'anonymat
