@@ -34,29 +34,30 @@
 28. [Securing iCloud Settings](#securing-icloud-settings)
 29. [Safari Privacy and Security Settings](#safari-privacy-and-security-settings)
 30. [Detailed Privacy Settings Adjustments](#detailed-privacy-settings-adjustments)
-31. [Staying Secure with iOS Updates](#staying-secure-with-ios-updates)
-32. [Physical Security Measures for Your Device](#physical-security-measures-for-your-device)
-33. [The Risks of Jailbreaking](#the-risks-of-jailbreaking)
-34. [Secure Backups](#secure-backups)
-35. [Alternatives to Data Transfer and iCloud](#alternatives-to-data-transfer-and-icloud)
-36. [Screen Time & Restrictions for Added Security](#screen-time--restrictions-for-added-security)
-37. [Optimizing System Services for Privacy](#optimizing-system-services-for-privacy)
-38. [Understanding and Using Lockdown Mode](#understanding-and-using-lockdown-mode)
-39. [Learn to use Emergency SOS](#learn-to-use-emergency-sos)
-40. [Enable USB Restricted Mode](#enable-usb-restricted-mode)
-41. [Managing Emergency Alerts and Addressing False Privacy Warnings](#managing-emergency-alerts-and-addressing-false-privacy-warnings)
-42. [Password Management and Account Security](#password-management-and-account-security)
-43. [Privacy Implications of iCloud Backups](#privacy-implications-of-icloud-backups)
-44. [Threat Modeling Scenarios](#threat-modeling-scenarios)
-45. [Securely Disposing of Old Devices](#securely-disposing-of-old-devices)
-46. [Privacy Trade-offs of Find My](#privacy-trade-offs-of-find-my)
-47. [Securely Using Apple Pay and Wallet Features](#securely-using-apple-pay-and-wallet-features)
-48. [Educating Family and Friends about Secure Practices](#educating-family-and-friends-about-secure-practices)
-49. [Managing IoT Devices and Their Access](#managing-iot-devices-and-their-access)
-50. [Contextualizing Jailbreaking Risks](#contextualizing-jailbreaking-risks)
-51. [Regular Updates and Revisions](#regular-updates-and-revisions)
-52. [External Resources for Further Learning](#external-resources-for-further-learning)
-53. [Feedback and Contributions](#feedback-and-contributions)
+31. [Live Listen (Real-Time Listening)](#live-listen-real-time-listening)
+32. [Staying Secure with iOS Updates](#staying-secure-with-ios-updates)
+33. [Physical Security Measures for Your Device](#physical-security-measures-for-your-device)
+34. [The Risks of Jailbreaking](#the-risks-of-jailbreaking)
+35. [Secure Backups](#secure-backups)
+36. [Alternatives to Data Transfer and iCloud](#alternatives-to-data-transfer-and-icloud)
+37. [Screen Time & Restrictions for Added Security](#screen-time--restrictions-for-added-security)
+38. [Optimizing System Services for Privacy](#optimizing-system-services-for-privacy)
+39. [Understanding and Using Lockdown Mode](#understanding-and-using-lockdown-mode)
+40. [Learn to use Emergency SOS](#learn-to-use-emergency-sos)
+41. [Enable USB Restricted Mode](#enable-usb-restricted-mode)
+42. [Managing Emergency Alerts and Addressing False Privacy Warnings](#managing-emergency-alerts-and-addressing-false-privacy-warnings)
+43. [Password Management and Account Security](#password-management-and-account-security)
+44. [Privacy Implications of iCloud Backups](#privacy-implications-of-icloud-backups)
+45. [Threat Modeling Scenarios](#threat-modeling-scenarios)
+46. [Securely Disposing of Old Devices](#securely-disposing-of-old-devices)
+47. [Privacy Trade-offs of Find My](#privacy-trade-offs-of-find-my)
+48. [Securely Using Apple Pay and Wallet Features](#securely-using-apple-pay-and-wallet-features)
+49. [Educating Family and Friends about Secure Practices](#educating-family-and-friends-about-secure-practices)
+50. [Managing IoT Devices and Their Access](#managing-iot-devices-and-their-access)
+51. [Contextualizing Jailbreaking Risks](#contextualizing-jailbreaking-risks)
+52. [Regular Updates and Revisions](#regular-updates-and-revisions)
+53. [External Resources for Further Learning](#external-resources-for-further-learning)
+54. [Feedback and Contributions](#feedback-and-contributions)
 
 ## Introduction
 Welcome to the Ultimate iOS Hardening Guide! This guide is designed to enhance the security and privacy of iPhones and iPads for users at all levels, from beginners to advanced. We explore and explain Apple's security features, their limitations, and provide alternative solutions for robust privacy and security within the Apple ecosystem.
@@ -357,6 +358,40 @@ Enhance your privacy in Safari by enabling Fraudulent Website Warnings and manag
 
 ## Detailed Privacy Settings Adjustments
 Limit Siri's access and turn off notifications for sensitive apps. In Safari, use private browsing and disable suggestions—opt-out of analytics data sharing for enhanced privacy.
+
+## Live Listen (Real-Time Listening)
+
+Live Listen turns iPhone into a remote microphone: sound captured by the iPhone is streamed live to AirPods, compatible Beats headphones, or Made for iPhone (MFi) hearing devices. It is an accessibility feature, but it can also be used to listen to a conversation from a distance, so it is worth checking that it is not running unexpectedly.
+
+**Timeline**
+- 2014: launched for MFi hearing devices.
+- iOS 12 (2018): extended to AirPods.
+- iOS 14.3 (2020): minimum version required by Apple for AirPods and Beats.
+- iOS 26 (2025): added Live Captions and control from Apple Watch or another device signed in to the same Apple Account.
+
+**Listening session vs. Remote Control**
+Two different settings are available under `Settings → Accessibility → Audio & Visual → Live Listen`:
+- **The listening session** ("Start / Stop Live Listen"): only this actually turns on the microphone. If it is stopped, no listening is taking place.
+- **"Remote Control"**: allows a nearby device signed in to the same Apple Account (Apple Watch, another iPhone or iPad) to start, stop, or rewind a session. This may be enabled by default on recent iOS versions; being checked does not mean a session is active, but it lets a trusted device start one.
+
+**Check that no session is active**
+1. Open Control Center: the Live Listen button should not be highlighted.
+2. In `Settings → Accessibility → Audio & Visual → Live Listen`, the session should be stopped (the button should read "Start Live Listen").
+3. An orange dot (or red pill) at the top of the screen means the microphone is in use; check which app or feature is responsible.
+4. On iOS 18 and earlier, use `Control Center → Hearing → [your AirPods] → Live Listen`. For hearing devices: `Settings → Accessibility → Hearing Devices`.
+
+**Disable and lock down**
+1. Stop any active session (Control Center or the setting above).
+2. Turn off **"Remote Control"** if you do not use an Apple Watch or hearing device.
+3. Remove the "Live Listen" / "Hearing" control from Control Center (`Settings → Control Center`).
+4. Remove it from the Accessibility Shortcut (`Settings → Accessibility → Accessibility Shortcut`).
+5. On Apple Watch, remove the "Hearing" control from its Control Center.
+6. For hearing devices, turn off "Control on Lock Screen" under `Settings → Accessibility → Hearing Devices`.
+7. Review the devices signed in to your Apple Account and remove any you do not recognize.
+
+**Not to be confused with:** Siri and "Hey Siri" (wake-word listening), Sound Recognition, Live Captions, and microphone permission granted to apps (`Settings → Privacy & Security → Microphone`).
+
+**References:** [Use iPhone as a remote microphone with Live Listen](https://support.apple.com/guide/iphone/use-live-listen-iph8bf9386f5/ios) · [Control Live Listen on iPhone from Apple Watch](https://support.apple.com/guide/watch/control-live-listen-apd4f5b634f3/watchos).
 
 ## Staying Secure with iOS Updates
 Regularly update your iOS to the latest version to benefit from the newest security patches. Keep your apps updated as well.

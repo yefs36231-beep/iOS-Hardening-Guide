@@ -34,29 +34,30 @@
 28. [Sécuriser les réglages iCloud](#sécuriser-les-réglages-icloud)
 29. [Paramètres de confidentialité et de sécurité de Safari](#paramètres-de-confidentialité-et-de-sécurité-de-safari)
 30. [Ajustements détaillés des paramètres de confidentialité](#ajustements-détaillés-des-paramètres-de-confidentialité)
-31. [Rester sécurisé avec les mises à jour iOS](#rester-sécurisé-avec-les-mises-à-jour-ios)
-32. [Mesures de sécurité physique de l'appareil](#mesures-de-sécurité-physique-de-lappareil)
-33. [Les risques du jailbreak](#les-risques-du-jailbreak)
-34. [Sauvegardes sécurisées](#sauvegardes-sécurisées)
-35. [Alternatives au transfert de données et à iCloud](#alternatives-au-transfert-de-données-et-à-icloud)
-36. [Temps d'écran et restrictions pour renforcer la sécurité](#temps-décran-et-restrictions-pour-renforcer-la-sécurité)
-37. [Optimiser les services système pour la confidentialité](#optimiser-les-services-système-pour-la-confidentialité)
-38. [Comprendre et utiliser le mode Isolement (Lockdown Mode)](#comprendre-et-utiliser-le-mode-isolement-lockdown-mode)
-39. [Apprendre à utiliser Emergency SOS](#apprendre-à-utiliser-emergency-sos)
-40. [Activer le mode USB restreint](#activer-le-mode-usb-restreint)
-41. [Gérer les alertes d'urgence et les fausses alertes de confidentialité](#gérer-les-alertes-durgence-et-les-fausses-alertes-de-confidentialité)
-42. [Gestion des mots de passe et sécurité des comptes](#gestion-des-mots-de-passe-et-sécurité-des-comptes)
-43. [Implications pour la confidentialité des sauvegardes iCloud](#implications-pour-la-confidentialité-des-sauvegardes-icloud)
-44. [Scénarios de modélisation des menaces](#scénarios-de-modélisation-des-menaces)
-45. [Se débarrasser en toute sécurité des anciens appareils](#se-débarrasser-en-toute-sécurité-des-anciens-appareils)
-46. [Compromis de confidentialité de Find My](#compromis-de-confidentialité-de-find-my)
-47. [Utiliser Apple Pay et les fonctionnalités Wallet en toute sécurité](#utiliser-apple-pay-et-les-fonctionnalités-wallet-en-toute-sécurité)
-48. [Sensibiliser famille et amis aux bonnes pratiques de sécurité](#sensibiliser-famille-et-amis-aux-bonnes-pratiques-de-sécurité)
-49. [Gérer les appareils IoT et leurs accès](#gérer-les-appareils-iot-et-leurs-accès)
-50. [Mettre en perspective les risques du jailbreak](#mettre-en-perspective-les-risques-du-jailbreak)
-51. [Mises à jour et révisions régulières](#mises-à-jour-et-révisions-régulières)
-52. [Ressources externes pour aller plus loin](#ressources-externes-pour-aller-plus-loin)
-53. [Retours et contributions](#retours-et-contributions)
+31. [Écoute en temps réel (Live Listen)](#écoute-en-temps-réel-live-listen)
+32. [Rester sécurisé avec les mises à jour iOS](#rester-sécurisé-avec-les-mises-à-jour-ios)
+33. [Mesures de sécurité physique de l'appareil](#mesures-de-sécurité-physique-de-lappareil)
+34. [Les risques du jailbreak](#les-risques-du-jailbreak)
+35. [Sauvegardes sécurisées](#sauvegardes-sécurisées)
+36. [Alternatives au transfert de données et à iCloud](#alternatives-au-transfert-de-données-et-à-icloud)
+37. [Temps d'écran et restrictions pour renforcer la sécurité](#temps-décran-et-restrictions-pour-renforcer-la-sécurité)
+38. [Optimiser les services système pour la confidentialité](#optimiser-les-services-système-pour-la-confidentialité)
+39. [Comprendre et utiliser le mode Isolement (Lockdown Mode)](#comprendre-et-utiliser-le-mode-isolement-lockdown-mode)
+40. [Apprendre à utiliser Emergency SOS](#apprendre-à-utiliser-emergency-sos)
+41. [Activer le mode USB restreint](#activer-le-mode-usb-restreint)
+42. [Gérer les alertes d'urgence et les fausses alertes de confidentialité](#gérer-les-alertes-durgence-et-les-fausses-alertes-de-confidentialité)
+43. [Gestion des mots de passe et sécurité des comptes](#gestion-des-mots-de-passe-et-sécurité-des-comptes)
+44. [Implications pour la confidentialité des sauvegardes iCloud](#implications-pour-la-confidentialité-des-sauvegardes-icloud)
+45. [Scénarios de modélisation des menaces](#scénarios-de-modélisation-des-menaces)
+46. [Se débarrasser en toute sécurité des anciens appareils](#se-débarrasser-en-toute-sécurité-des-anciens-appareils)
+47. [Compromis de confidentialité de Find My](#compromis-de-confidentialité-de-find-my)
+48. [Utiliser Apple Pay et les fonctionnalités Wallet en toute sécurité](#utiliser-apple-pay-et-les-fonctionnalités-wallet-en-toute-sécurité)
+49. [Sensibiliser famille et amis aux bonnes pratiques de sécurité](#sensibiliser-famille-et-amis-aux-bonnes-pratiques-de-sécurité)
+50. [Gérer les appareils IoT et leurs accès](#gérer-les-appareils-iot-et-leurs-accès)
+51. [Mettre en perspective les risques du jailbreak](#mettre-en-perspective-les-risques-du-jailbreak)
+52. [Mises à jour et révisions régulières](#mises-à-jour-et-révisions-régulières)
+53. [Ressources externes pour aller plus loin](#ressources-externes-pour-aller-plus-loin)
+54. [Retours et contributions](#retours-et-contributions)
 
 ## Introduction
 Bienvenue dans le guide ultime du durcissement d'iOS ! Ce guide vise à renforcer la sécurité et la confidentialité des iPhone et iPad pour tous les utilisateurs, des débutants aux plus avancés. Nous explorons et expliquons les fonctionnalités de sécurité d'Apple, leurs limites, et proposons des solutions alternatives pour une confidentialité et une sécurité robustes au sein de l'écosystème Apple.
@@ -357,6 +358,40 @@ Renforcez votre confidentialité dans Safari en activant les avertissements de s
 
 ## Ajustements détaillés des paramètres de confidentialité
 Limitez l'accès à Siri et désactivez les notifications pour les applications sensibles. Dans Safari, utilisez la navigation privée et désactivez les suggestions — refusez le partage de données analytiques pour une confidentialité renforcée.
+
+## Écoute en temps réel (Live Listen)
+
+« Écoute en temps réel » (Live Listen) transforme l'iPhone en microphone distant : le son capté par l'iPhone est transmis en direct à des AirPods, à des écouteurs Beats compatibles ou à des appareils auditifs « Made for iPhone » (MFi). C'est une fonction d'accessibilité, mais elle peut aussi servir à écouter une conversation à distance. Il faut donc vérifier qu'elle n'est pas active sans raison.
+
+**Depuis quand ?**
+- 2014 : lancement pour les appareils auditifs MFi.
+- iOS 12 (2018) : extension aux AirPods.
+- iOS 14.3 (2020) : version minimale exigée par Apple pour les AirPods et les Beats.
+- iOS 26 (2025) : ajout des sous-titres en direct et du contrôle depuis l'Apple Watch ou un autre appareil connecté au même compte Apple.
+
+**Session d'écoute ou contrôle à distance ?**
+Deux réglages différents existent dans `Réglages → Accessibilité → Audio et visuel → Écoute en temps réel` :
+- **La session d'écoute** (« Démarrer / Arrêter l'écoute en temps réel ») : elle seule active réellement le microphone. Si elle est arrêtée, aucune écoute n'est en cours.
+- **« Contrôle à distance »** : autorise un appareil voisin connecté au même compte Apple (Apple Watch, autre iPhone ou iPad) à démarrer, arrêter ou rembobiner une session. Ce réglage peut être activé par défaut sur les versions récentes d'iOS ; coché ne signifie pas qu'une écoute est en cours, mais il permet à un appareil de confiance de la lancer.
+
+**Vérifier qu'aucune écoute n'est active :**
+1. Ouvrez le Centre de contrôle : le bouton « Écoute en temps réel » ne doit pas être allumé.
+2. Dans `Réglages → Accessibilité → Audio et visuel → Écoute en temps réel`, la session doit être arrêtée (le bouton doit afficher « Démarrer l'écoute en temps réel »).
+3. Un point orange (ou une pastille rouge) en haut de l'écran indique que le microphone est utilisé ; vérifiez quelle app ou fonction en est responsable.
+4. Sur iOS 18 et versions antérieures, passez par `Centre de contrôle → Audition → [vos AirPods] → Écoute en temps réel`. Pour des appareils auditifs : `Réglages → Accessibilité → Appareils auditifs`.
+
+**Désactiver et verrouiller :**
+1. Arrêtez la session en cours (Centre de contrôle ou réglage ci-dessus).
+2. Désactivez **« Contrôle à distance »** si vous n'utilisez ni Apple Watch ni appareil auditif.
+3. Retirez le contrôle « Écoute en temps réel » / « Audition » du Centre de contrôle (`Réglages → Centre de contrôle`).
+4. Retirez-le du raccourci Accessibilité (`Réglages → Accessibilité → Raccourci Accessibilité`).
+5. Sur l'Apple Watch, retirez le contrôle « Audition » de son Centre de contrôle.
+6. Pour des appareils auditifs, désactivez « Contrôler sur l'écran verrouillé » dans `Réglages → Accessibilité → Appareils auditifs`.
+7. Vérifiez les appareils connectés à votre compte Apple et retirez ceux que vous ne reconnaissez pas.
+
+**À ne pas confondre avec :** Siri et « Dis Siri » (écoute du mot d'éveil), la reconnaissance des sons, les sous-titres en direct et l'autorisation micro accordée aux apps (`Réglages → Confidentialité et sécurité → Microphone`).
+
+**Références :** [Utiliser l'iPhone comme micro distant avec Écoute en temps réel](https://support.apple.com/fr-fr/guide/iphone/iph8bf9386f5/ios) · [Contrôler Écoute en temps réel depuis l'Apple Watch](https://support.apple.com/fr-fr/guide/watch/apd4f5b634f3/watchos).
 
 ## Rester sécurisé avec les mises à jour iOS
 Mettez régulièrement à jour iOS vers la dernière version pour bénéficier des correctifs de sécurité les plus récents. Gardez également vos applications à jour.
