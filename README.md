@@ -56,8 +56,9 @@
 50. [Managing IoT Devices and Their Access](#managing-iot-devices-and-their-access)
 51. [Contextualizing Jailbreaking Risks](#contextualizing-jailbreaking-risks)
 52. [Regular Updates and Revisions](#regular-updates-and-revisions)
-53. [External Resources for Further Learning](#external-resources-for-further-learning)
-54. [Feedback and Contributions](#feedback-and-contributions)
+53. [Often-Overlooked Hardening Tricks (iOS 16–27)](#often-overlooked-hardening-tricks-ios-1627)
+54. [External Resources for Further Learning](#external-resources-for-further-learning)
+55. [Feedback and Contributions](#feedback-and-contributions)
 
 ## Introduction
 Welcome to the Ultimate iOS Hardening Guide! This guide is designed to enhance the security and privacy of iPhones and iPads for users at all levels, from beginners to advanced. We explore and explain Apple's security features, their limitations, and provide alternative solutions for robust privacy and security within the Apple ecosystem.
@@ -532,6 +533,185 @@ Jailbreaking allows users to bypass many of iOS's security restrictions, which c
 ### Keeping Up with iOS Updates
 - **Checking for iOS Updates**: Regularly check for and install the latest iOS updates on your device. These updates often contain crucial security patches and feature enhancements.
 - **Reviewing Guide Updates**: After updating your iOS, revisit this guide to ensure that your security settings and practices align with any new changes introduced by the update.
+
+## Often-Overlooked Hardening Tricks (iOS 16–27)
+
+The settings below are easy to miss because they are buried, enabled by default, or only appear after an update. None of them replaces the basics (strong passcode, two-factor authentication, updates, and backups); they close gaps that the rest of this guide does not cover. Apply them independently according to your threat model.
+
+**If you only do eight things:** enable Advanced Data Protection with a recovery key or contact, add security keys if you are high-risk, set notification previews to “When Unlocked,” lock or hide sensitive apps, turn on App Privacy Report, enable Background Security Improvements, screen unknown callers and senders, and review trusted devices and app-specific passwords.
+
+### Account, recovery, and identity
+
+- **Advanced Data Protection (ADP).** Turns on end-to-end encryption for most iCloud data, including device backups, Photos, and Notes. Apple cannot read that data, but it also cannot recover it for you.
+  - **Path:** `Settings → [your name] → iCloud → Advanced Data Protection`.
+  - **Before enabling:** set a recovery contact or a 28-character recovery key and store it offline. ADP disables iCloud.com web access; temporary web access must be approved from a trusted device.
+  - **Limits:** not available for child or managed accounts; Shared Albums, iWork collaboration, and “anyone with the link” sharing remain outside ADP.
+
+- **Security keys for your Apple Account.** A FIDO-certified hardware key blocks phishing and remote interception of your second factor. You must enroll at least two keys (maximum six) and keep them in separate places.
+  - **Path:** `Settings → [your name] → Sign-in & Security → Two-Factor Authentication → Security Keys`.
+  - **Caveat:** if you lose every trusted device and every key, the account can be permanently locked. Child and managed accounts are not supported. Requires iOS 16.3 or later on all devices.
+
+- **Recovery contacts, recovery key, and Legacy Contact.** These are three different mechanisms; set at least two. A recovery contact can give you a code, a recovery key is a 28-character secret you store offline, and a Legacy Contact can request access after your death.
+  - **Paths:** `Settings → [your name] → Sign-in & Security → Recovery Contacts` / `Recovery Key` / `Legacy Contact`.
+  - **Caveat:** a recovery key disables Apple’s standard account recovery; losing it can lock you out. Do not store it only in iCloud.
+
+- **Audit trusted devices and app-specific passwords.** Old iPads, Macs, and app passwords are persistent backdoors.
+  - **Path:** `Settings → [your name]` for the device list, and `appleid.apple.com → Sign-In & Security → App-Specific Passwords`.
+  - Remove devices you no longer use and revoke passwords for old apps. Changing your Apple Account password does not always revoke app-specific passwords.
+
+- **Safety Check.** Reviews who can see your location, photos, notes, calendar, and app permissions; Emergency Reset stops all sharing and guides you through securing the account.
+  - **Path:** `Settings → Privacy & Security → Safety Check`.
+  - **Caveat:** it cannot change third-party accounts, passwords, or data shared from another device; some options are unavailable with Screen Time restrictions or MDM. Use Quick Exit if you need to leave the screen immediately.
+
+- **iMessage Contact Key Verification.** Alerts you if a sophisticated attacker impersonates a contact or compromises iMessage servers; manual verification compares a code in person or over a secure call.
+  - **Path:** `Settings → [your name] → Contact Key Verification`.
+  - **Requirements:** iOS 17.2 or later, two-factor authentication, iCloud Keychain, and a passcode on all devices. Both parties must enable it; it does not stop phishing or SMS scams.
+
+- **Passkeys and compromised-password alerts.** Passkeys are phishing-resistant and synced end-to-end encrypted through iCloud Keychain. Turn on breach detection and review Security Recommendations.
+  - **Path:** `Passwords app → Security`; `Settings → Apps → Passwords → Detect Compromised Passwords`.
+  - **Caveat:** passkeys are only as safe as your device passcode and Apple Account; keep a hardware key or another recovery method.
+
+### iCloud, email, and network
+
+- **iCloud Private Relay.** Hides your IP address and DNS queries from websites and network operators by routing traffic through two relays. It is not a VPN: it does not change your apparent country or hide traffic from Apple.
+  - **Path:** `Settings → [your name] → iCloud → Private Relay`.
+  - **Caveat:** requires iCloud+; some networks, carriers, or countries do not support it. Turn it off per network if a captive portal or VPN conflicts.
+
+- **Hide My Email.** Creates unique `@privaterelay.appleid.com` aliases that forward to your real address; disable an alias when it starts receiving spam.
+  - **Path:** `Settings → [your name] → iCloud → Hide My Email`; also offered by Sign in with Apple.
+  - **Caveat:** iCloud+ required; some services block relay addresses; aliases are not anonymous if you use them with identifying data.
+
+- **Mail Privacy Protection.** Preloads remote content through two relays and hides your IP, so senders cannot reliably tell when or where you opened a message.
+  - **Path:** `Settings → Apps → Mail → Privacy Protection → Protect Mail Activity`.
+  - **Stronger option:** `Block All Remote Content` (images may not load). Requires `Limit IP Address Tracking`; it does not protect links or attachments you open.
+
+- **Private Wi-Fi Address and Limit IP Address Tracking.** Use a different MAC address per network (Fixed or Rotating) and hide your IP from known trackers.
+  - **Path:** `Settings → Wi-Fi → (i) next to the network → Private Wi-Fi Address` and `Limit IP Address Tracking`; cellular equivalent under `Settings → Cellular → Cellular Data Options`.
+  - **Caveat:** captive portals, corporate Wi-Fi, and some routers may require the hardware address; use Fixed rather than Off when possible.
+
+- **Encrypted DNS via a trusted profile.** DNS-over-HTTPS or DNS-over-TLS stops your ISP or hotspot from reading every domain you visit, but it does not hide the destination IP.
+  - **Path:** install a configuration profile from a reputable resolver (Quad9, Cloudflare, NextDNS) via `Settings → General → VPN & Device Management`.
+  - **Caveat:** a DNS profile can intercept all traffic; only install one you trust, and remove profiles you no longer use. DNS filtering is not a substitute for a VPN.
+
+- **Stop auto-joining old and open Wi-Fi networks.** A phone that silently joins a familiar SSID is vulnerable to evil-twin hotspots.
+  - **Path:** `Settings → Wi-Fi → Ask to Join Networks → Notify` (or Off); forget networks you no longer use; disable `Auto-Join Hotspot`.
+  - **Caveat:** `Ask to Join` still prompts; verify the network name and use a VPN on untrusted networks.
+
+### Lock screen, notifications, and apps
+
+- **Notification previews.** Set previews to `When Unlocked` or `Never` so codes, messages, and medical alerts do not appear on a locked screen.
+  - **Path:** `Settings → Notifications → Show Previews`.
+  - **Also:** `Settings → Notifications → Screen Sharing` to hide notifications while sharing your screen; per-app overrides can re-enable previews.
+
+- **Lock and hide apps.** Requires Face ID, Touch ID, or your passcode to open sensitive apps and removes them from search, notifications, and some system surfaces.
+  - **Path:** touch and hold the app icon → `Require Face ID` → `Require Face ID` or `Hide and Require Face ID`.
+  - **Caveat:** iOS 18 or later; built-in Apple apps cannot be hidden; hidden apps remain in the App Library’s Hidden folder and can be revealed with authentication.
+
+- **App Privacy Report.** Shows which apps used the camera, microphone, location, contacts, photos, and other sensors, plus the domains they contacted.
+  - **Path:** `Settings → Privacy & Security → App Privacy Report → Turn On App Privacy Report`.
+  - Use it monthly: revoke sensors that do not match the app’s purpose, and investigate unexpected domains.
+
+- **Strip location from photos before sharing.** Photos can carry GPS coordinates, timestamps, and device details.
+  - **Path:** `Photos → open photo → Info (i) → Adjust → No Location`; when sharing, tap `Options` and turn off `Location` and `All Photos Data`.
+  - **Caveat:** screenshots and some edited or exported images may retain metadata; use a metadata-removal tool for high-risk sharing.
+
+- **Clipboard and third-party keyboards.** iOS asks before an app pastes from another app; do not grant `Allow Paste` to apps that do not need it. Third-party keyboards with `Full Access` can read what you type.
+  - **Path:** `Settings → General → Keyboard → Keyboards → [keyboard] → Full Access` (turn off); review paste prompts as they appear.
+  - **Caveat:** some keyboards need Full Access for glide typing or text replacement; prefer the built-in keyboard for passwords and sensitive messages.
+
+- **Require Attention and Erase Data.** `Require Attention` prevents Face ID from unlocking while your eyes are closed; `Erase Data` wipes the device after 10 failed passcode attempts.
+  - **Path:** `Settings → Face ID & Passcode → Require Attention` and `Erase Data`.
+  - **Caveat:** Erase Data can be triggered by children or pranksters; keep backups. It is a last-resort protection, not a substitute for a strong passcode.
+
+- **Audit the permissions people forget.** `Local Network`, `Bluetooth`, `Contacts` (limited access), and `Photos` (selected photos) are common leaks.
+  - **Path:** `Settings → Privacy & Security → Local Network / Bluetooth / Contacts / Photos`.
+  - Prefer `Limited Access` for photos and contacts; revoke Local Network from apps that do not need to discover devices.
+
+### Calls, messages, and sharing
+
+- **Call Screening (iOS 26 or later).** Unknown callers are asked to state their name and reason before your phone rings; you see a live transcript and decide whether to answer.
+  - **Path:** `Settings → Apps → Phone → Screen Unknown Callers → Ask Reason for Calling` (or `Silence`).
+  - **Caveat:** emergency calls disable screening for 24 hours; roaming calls are not screened; some callers hang up.
+
+- **Screen unknown senders in Messages.** Moves texts from unknown numbers out of the main list and suppresses notifications; spam gets a separate folder.
+  - **Path:** `Messages → Filters → Manage Filtering → Screen Unknown Senders` (and `Filter Spam`); or `Settings → Apps → Messages → Unknown Senders`.
+  - **Caveat:** verification codes and delivery messages can be filtered; allow time-sensitive notifications or check the Unknown Senders folder.
+
+- **AirDrop and NameDrop.** Set AirDrop to `Contacts Only` or `Receiving Off`; disable `Bringing Devices Together` so holding two iPhones together does not share your contact card.
+  - **Path:** `Settings → General → AirDrop`.
+  - **Caveat:** `Contacts Only` still allows anyone in your contacts; `Receiving Off` is best in crowded places.
+
+- **RCS, SMS fallback, and FaceTime sharing.** RCS is not automatically end-to-end encrypted with every carrier; SMS never is. Disable `Retry as Text Message` if you do not want a failed iMessage to fall back silently. Treat unexpected screen-sharing or remote-control requests as hostile.
+  - **Path:** `Settings → Apps → Messages → RCS Messaging` and `Retry as Text Message`; FaceTime controls appear during a call.
+  - **Caveat:** since iOS 26.5, RCS can be end-to-end encrypted with supported carriers, but coverage varies; use iMessage or Signal for sensitive content.
+
+- **SIM PIN, eSIM, and port-out lock.** A SIM PIN stops someone from using your physical SIM in another phone; a carrier account PIN and port-out lock block number hijacking. eSIM transfer should require carrier approval.
+  - **Path:** `Settings → Cellular → SIM PIN` (physical SIM); carrier account settings for port-out protection.
+  - **Caveat:** too many wrong SIM PIN attempts require the PUK; store it safely. eSIM-only setups are not immune to account takeover.
+
+### System, updates, and Apple services
+
+- **Background Security Improvements.** Lightweight patches for Safari, WebKit, and system libraries between full iOS updates; formerly called Rapid Security Responses.
+  - **Path:** `Settings → Privacy & Security → Background Security Improvements → Automatically Install`.
+  - **Caveat:** iOS 26.1 or later; if disabled, you wait for the next full update. A problematic improvement can be removed, reverting to the baseline version.
+
+- **Analytics and Siri history.** Turn off sharing iPhone and iCloud analytics and `Improve Siri & Dictation`; delete stored Siri and dictation transcripts.
+  - **Path:** `Settings → Privacy & Security → Analytics & Improvements`; `Settings → Siri → Siri & Dictation History → Delete Siri & Dictation History`.
+  - **Caveat:** some analytics help Apple fix crashes; the privacy trade-off is yours. Deleting history does not disable Siri.
+
+- **Apple Intelligence and ChatGPT.** Apple Intelligence can use on-device and server models; the ChatGPT extension sends requests to OpenAI when used. Disable features you do not need and review per-app access.
+  - **Path:** `Settings → Apple Intelligence & Siri → ChatGPT` (turn off the extension); `Settings → Apple Intelligence & Siri` for Siri, Visual Intelligence, and app access.
+  - **Caveat:** features and availability vary by device, region, and language. iOS 27’s Siri AI adds new opt-ins and data access, so recheck after major updates.
+
+- **Journaling Suggestions and “Discoverable by Others.”** Journaling suggestions can use contacts, photos, workouts, and nearby devices; `Discoverable by Others` lets other Journal users’ phones detect yours to prioritize their suggestions.
+  - **Path:** `Settings → Privacy & Security → Journaling Suggestions` → turn off categories, `Discoverable by Others`, or `Turn Off All`.
+  - **Caveat:** this does not share your journal entries or name; it is a nearby-device signal. Disable it if you do not use Journal.
+
+- **StandBy privacy.** A charging iPhone in landscape can display notifications, photos, and widgets to everyone in the room.
+  - **Path:** `Settings → StandBy` → turn off `Show Notifications` or enable `Show Preview on Tap Only`; enable `Night Mode` for bedside use.
+  - **Caveat:** StandBy is convenient as a bedside clock, but it is a public display; do not use sensitive widgets or photo albums.
+
+- **Limit Precise Location (iOS 26.3 or later).** Reduces the precision of location data exposed to cellular networks, without affecting apps or emergency calls.
+  - **Path:** `Settings → Cellular → Cellular Data Options → Limit Precise Location`.
+  - **Caveat:** only compatible iPhone and iPad models (Apple C1/C1X modems, such as iPhone Air, iPhone 16e, and iPhone 17e) and supported carriers; EU and UK SIMs can enable it. It is not a substitute for app-level `Precise Location` control.
+
+### Children, shared devices, and high-risk setups
+
+- **Sensitive Content Warning and Communication Safety.** Blurs nudity or gore in Messages, AirDrop, Contact Posters, and FaceTime video messages; Communication Safety adds parental controls and resources for children.
+  - **Path:** `Settings → Privacy & Security → Sensitive Content Warning`; for a child: `Settings → Screen Time → Communication Safety`.
+  - **Caveat:** detection is on-device; no images are sent to Apple unless you report them. Communication Safety is on by default for children under 18 in many regions.
+
+- **Screen Time passcode, restrictions, and Guided Access.** A separate Screen Time passcode prevents someone who knows your device passcode from changing restrictions; Guided Access locks the phone to one app when lending it.
+  - **Path:** `Settings → Screen Time → Lock Screen Time Settings`; `Settings → Screen Time → Content & Privacy Restrictions`; `Settings → Accessibility → Guided Access`.
+  - **Caveat:** a forgotten Screen Time passcode can only be reset by erasing the device, or with Apple Account recovery on newer iOS; document it safely.
+
+- **Supervision or MDM for high-risk users.** A supervised device can enforce update deferrals, prohibit pairing, restrict accounts, force a VPN or DNS proxy, and enable always-on protections that users cannot disable.
+  - **Path:** Apple Business Manager or Apple School Manager plus Apple Configurator or an MDM; declarative device management on iOS 27.
+  - **Caveat:** you trade flexibility for control, and you need a Mac and a management plan. Do not install random MDM profiles; verify the organization.
+
+- **Beta profiles and configuration profiles.** Beta iOS builds are less tested and may break security features; unknown profiles can intercept traffic or install certificates.
+  - **Path:** `Settings → General → VPN & Device Management` (remove unknown profiles); `Settings → General → About → Certificate Trust Settings` (disable untrusted root certificates).
+  - **Caveat:** removing a profile may remove Wi-Fi, VPN, or email settings; keep a backup and know how to re-enroll.
+
+### Physical and end-of-life
+
+- **Juice jacking and Faraday bags.** Public USB ports can carry data, not just power; a data-blocking cable or power bank avoids the risk. A Faraday bag blocks cellular, Wi-Fi, Bluetooth, and GPS when you need to isolate a device.
+  - **Path:** carry a power-only cable or data blocker; test that it charges but does not mount as a device.
+  - **Caveat:** Faraday bags also block emergency calls and Find My; use them deliberately, not as everyday storage.
+
+- **Satellite SOS, Messages, and Find My.** iPhone 14 and later can contact emergency services, send messages, and share location via satellite when there is no cellular or Wi-Fi coverage.
+  - **Path:** `Settings → Emergency SOS` or `Settings → Satellite` (where available); try the demo before you need it.
+  - **Caveat:** requires a clear view of the sky, is available in limited countries, and free access may be time-limited; it is not a substitute for a PLB or satellite messenger for remote travel.
+
+- **Medical ID and Emergency Contacts.** Medical ID can be shown on the Lock Screen without unlocking; include allergies, medications, blood type, and emergency contacts, but omit details you do not want strangers to see.
+  - **Path:** `Health app → profile picture → Medical ID → Edit`; enable `Show When Locked`.
+  - **Caveat:** anyone can read it from the Lock Screen; keep it accurate and review after medication changes.
+
+- **Before selling or recycling.** Sign out of your Apple Account, turn off Activation Lock and Find My, erase the device, transfer or delete the eSIM, and remove it from your trusted devices.
+  - **Path:** `Settings → [your name] → Sign Out`; `Settings → General → Transfer or Reset iPhone → Erase All Content and Settings`; carrier app or settings for eSIM.
+  - **Caveat:** erasing without signing out can leave Activation Lock; a wiped device with Activation Lock is useless to a buyer and may still be tied to you.
+
+**Key Apple references:** [Advanced Data Protection](https://support.apple.com/en-us/108756) · [Security Keys](https://support.apple.com/en-us/102637) · [Contact Key Verification](https://support.apple.com/en-us/118246) · [Safety Check](https://support.apple.com/guide/personal-safety/use-safety-check-to-stop-sharing-and-secure-your-account-ips2aad835e1/web) · [App Privacy Report](https://support.apple.com/en-us/102188) · [Background Security Improvements](https://support.apple.com/en-us/102657) · [Limit Precise Location](https://support.apple.com/en-us/126101) · [Call Screening](https://support.apple.com/en-us/111106) · [Sensitive Content Warning](https://support.apple.com/en-us/105071)
 
 ## External Resources for Further Learning
 - [Into the Cyberverse](https://alternativeto.net/list/34604/cyberverse) - The ultimate list of apps/services for better Security, Privacy and Anonymity 
