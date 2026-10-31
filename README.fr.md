@@ -1,5 +1,8 @@
 # Le guide ultime du durcissement d'iOS
 
+[![English](https://img.shields.io/badge/English-read-0969da?style=for-the-badge)](README.md)
+[![Français](https://img.shields.io/badge/Fran%C3%A7ais-actif-2ea44f?style=for-the-badge)](README.fr.md)
+
 ## Table des matières
 1. [Introduction](#introduction)
 2. [Choisir le bon appareil : sélection de l'appareil et sécurité biométrique](#choisir-le-bon-appareil--sélection-de-lappareil-et-sécurité-biométrique)
