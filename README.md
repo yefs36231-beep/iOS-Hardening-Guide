@@ -1,5 +1,8 @@
 # The Ultimate iOS Hardening Guide
 
+[![English](https://img.shields.io/badge/English-active-2ea44f?style=for-the-badge)](README.md)
+[![Français](https://img.shields.io/badge/Fran%C3%A7ais-lire-0969da?style=for-the-badge)](README.fr.md)
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Choosing the Right Device: Device Selection and Biometric Security](#choosing-the-right-device-device-selection-and-biometric-security)
