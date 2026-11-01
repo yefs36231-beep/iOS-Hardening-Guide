@@ -131,6 +131,8 @@ Find My is a built-in app that allows you to:
 5. Enable "Find My network" to locate your iPhone even when it's offline, in power reserve mode, or after power off.
 6. Enable "Send Last Location" to automatically send the location of your iPhone to Apple when the battery is critically low.
 
+<img src="assets/screenshots/find-my-settings.png" alt="Find My settings" width="300">
+
 If you're asked to sign in, enter your Apple ID credentials. When you set up Find My, any paired Apple Watch and AirPods are automatically set up as well.
 
 **Find My network:**
@@ -144,6 +146,8 @@ It's essential to enable Find My on your iPhone or iPad, along with the "Find My
 
 ## Enable Automatic Updates
 Turn on automatic updates under `Settings → General → Software Update → Automatic Updates` to ensure your device always has the latest security patches.
+
+<img src="assets/screenshots/automatic-updates-settings.jpg" alt="automatic-updates_settings" width="300">
 
 ## Two-Factor Authentication
 Two-factor authentication adds a critical layer of security. It combines something you know (your password) and something you have (your device). 
@@ -213,6 +217,8 @@ For example, a thief could snatch your phone and quickly disable the cellular an
 6. Also uncheck any other features you don't use.
 
 By disabling Control Center access when your device is locked, you can prevent unauthorized changes to your settings and reduce potential security risks.
+
+<img src="assets/screenshots/allow-access-when-locked.png" alt="disable_control_center_when_locked" width="300">
 
 ## Enable Stolen Device Protection
 Stolen Device Protection adds a layer of security when your iPhone is away from familiar locations, such as home or work, and helps protect your accounts and personal information in case your iPhone is ever stolen.
@@ -424,6 +430,8 @@ There are two ways to activate Emergency SOS:
 
 2. **Call with Hold and Release**: Press and hold the side button and either volume button. A countdown begins and an alarm sounds. After the countdown, if you release the buttons, iPhone will call emergency services. In certain regions, you may need to specify an emergency service to dial.
 
+<img src="assets/screenshots/emergency-sos-activation.png" alt="emergency_sos_activation" width="300">
+
 If needed, you can call emergency services by sliding the Emergency SOS slider on the screen.
 
 **Enabling Auto-Calling:**
@@ -437,6 +445,8 @@ You can set your device to automatically call emergency services after the Emerg
 There are two ways to use auto-calling:
 1. Call after 5 presses: Continue holding the power and volume buttons for more than 10 seconds.
 2. Call with Hold: Hold the buttons for more than 10 seconds.
+
+<img src="assets/screenshots/emergency-sos-settings.png" alt="emergency_sos_settings" width="300">
 
 **Setting Up Emergency Contacts:**
 
@@ -467,6 +477,8 @@ Enabling USB Restricted Mode further enhances the security of your iOS device. T
 1. Go to `Settings → Touch ID/Face ID & Passcode`.
 
 2. Make sure the "Accessories" option is turned off under "Allow Access When Locked".
+
+<img src="assets/screenshots/allow-access-when-locked.png" alt="usb_restricted_mode_settings" width="300">
 
 When this setting is off, your iPhone will display the following message:
 

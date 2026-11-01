@@ -131,6 +131,8 @@ Find My est une application intégrée qui vous permet de :
 5. Activez « Find My network » pour localiser votre iPhone même hors ligne, en mode réserve d'énergie ou après extinction.
 6. Activez « Send Last Location » pour envoyer automatiquement la position de votre iPhone à Apple lorsque la batterie est critique.
 
+<img src="assets/screenshots/find-my-settings.png" alt="Réglages Find My" width="300">
+
 Si vous êtes invité à vous connecter, saisissez les identifiants de votre Apple ID. Lorsque vous configurez Find My, toute Apple Watch et tous les AirPods appairés sont également configurés automatiquement.
 
 **Find My network :**
@@ -144,6 +146,8 @@ Il est essentiel d'activer Find My sur votre iPhone ou iPad, ainsi que les fonct
 
 ## Activer les mises à jour automatiques
 Activez les mises à jour automatiques sous `Settings → General → Software Update → Automatic Updates` pour garantir que votre appareil dispose toujours des derniers correctifs de sécurité.
+
+<img src="assets/screenshots/automatic-updates-settings.jpg" alt="Réglages des mises à jour automatiques" width="300">
 
 ## Authentification à deux facteurs
 L'authentification à deux facteurs ajoute une couche de sécurité essentielle. Elle combine quelque chose que vous connaissez (votre mot de passe) et quelque chose que vous possédez (votre appareil).
@@ -213,6 +217,8 @@ Par exemple, un voleur pourrait s'emparer de votre téléphone et désactiver ra
 6. Décochez également toute autre fonctionnalité que vous n'utilisez pas.
 
 En désactivant l'accès au Control Center lorsque votre appareil est verrouillé, vous empêchez toute modification non autorisée de vos réglages et réduisez les risques de sécurité potentiels.
+
+<img src="assets/screenshots/allow-access-when-locked.png" alt="Accès autorisé lorsque l'appareil est verrouillé" width="300">
 
 ## Activer Stolen Device Protection
 Stolen Device Protection ajoute une couche de sécurité lorsque votre iPhone se trouve loin de lieux familiers, comme votre domicile ou votre lieu de travail, et contribue à protéger vos comptes et vos informations personnelles en cas de vol de votre iPhone.
@@ -424,6 +430,8 @@ Il existe deux façons d'activer Emergency SOS :
 
 2. **Appel par maintien puis relâchement** : maintenez enfoncé le bouton latéral et l'un des boutons de volume. Un compte à rebours commence et une alarme retentit. Après le compte à rebours, si vous relâchez les boutons, l'iPhone appelle les services d'urgence. Dans certaines régions, vous devrez peut-être préciser le service d'urgence à appeler.
 
+<img src="assets/screenshots/emergency-sos-activation.png" alt="Activation d'Emergency SOS" width="300">
+
 Si nécessaire, vous pouvez appeler les services d'urgence en faisant glisser le curseur Emergency SOS à l'écran.
 
 **Activer l'appel automatique :**
@@ -437,6 +445,8 @@ Vous pouvez configurer votre appareil pour appeler automatiquement les services 
 Il existe deux façons d'utiliser l'appel automatique :
 1. Appel après 5 pressions : continuez de maintenir les boutons d'alimentation et de volume pendant plus de 10 secondes.
 2. Appel par maintien : maintenez les boutons pendant plus de 10 secondes.
+
+<img src="assets/screenshots/emergency-sos-settings.png" alt="Réglages d'Emergency SOS" width="300">
 
 **Configurer les contacts d'urgence :**
 
@@ -467,6 +477,8 @@ L'activation du mode USB restreint renforce encore la sécurité de votre appare
 1. Accédez à `Settings → Touch ID/Face ID & Passcode`.
 
 2. Assurez-vous que l'option « Accessories » est désactivée sous « Allow Access When Locked ».
+
+<img src="assets/screenshots/allow-access-when-locked.png" alt="Réglage Accessories dans Allow Access When Locked" width="300">
 
 Lorsque ce réglage est désactivé, votre iPhone affiche le message suivant :
 
